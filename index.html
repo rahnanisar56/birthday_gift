@@ -297,9 +297,25 @@
         .balloon {
             position: absolute;
             bottom: -200px;
-            width: 60px;
-            height: 80px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            width: 65px;
+            height: 65px;
+            background: inherit;
+            clip-path: polygon(
+                50% 100%,
+                15% 60%,
+                5% 45%,
+                5% 30%,
+                12% 18%,
+                25% 12%,
+                38% 15%,
+                50% 28%,
+                62% 15%,
+                75% 12%,
+                88% 18%,
+                95% 30%,
+                95% 45%,
+                85% 60%
+            );
             z-index: 100;
             animation: balloonFloat 8s ease-in forwards;
             display: flex;
@@ -439,7 +455,8 @@
         }
 
         .gallery-title {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-size: clamp(2.5rem, 6vw, 4rem);
             color: var(--accent);
             text-align: center;
@@ -505,7 +522,8 @@
         }
 
         .hover-message {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-size: 1.8rem;
             color: #fff;
             text-align: center;
@@ -614,7 +632,7 @@
             <div class="secret-content">
                 <div class="message-card" id="message-card">
                     <h2
-                        style="font-family:cursive; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--accent); margin-bottom: 20px;">
+                        style="font-family:'Playfair Display', serif; font-style: italic; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--accent); margin-bottom: 20px;">
                         To my favorite person,</h2>
                     <p style="font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; color: rgba(255,255,255,0.8);">
                         Today is a very special day for me as its my beautiful boy's birthday and I miss you soo much on this day ikkaa.
@@ -788,22 +806,31 @@
                 ['#a29bfe', '#6c5ce7'], ['#ff9ff3', '#f368e0']
             ];
 
-            const interval = setInterval(() => {
+            setInterval(() => {
                 const b = document.createElement('div');
                 const shine = document.createElement('div');
+
                 b.classList.add('balloon');
                 shine.classList.add('balloon-shine');
-                const gradient = colorGradients[Math.floor(Math.random() * colorGradients.length)];
+
+                const gradient =
+                    colorGradients[Math.floor(Math.random() * colorGradients.length)];
+
                 b.style.left = Math.random() * 95 + 'vw';
-                b.style.background = `radial-gradient(circle at 70% 30%, ${gradient[0]}, ${gradient[1]})`;
-                b.style.boxShadow = `inset -10px -10px 20px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2)`;
+                b.style.background =
+                    `radial-gradient(circle at 70% 30%, ${gradient[0]}, ${gradient[1]})`;
+
+                b.style.boxShadow =
+                    `inset -10px -10px 20px rgba(0,0,0,0.3),
+                    0 10px 30px rgba(0,0,0,0.2)`;
+
                 b.appendChild(shine);
                 targetContainer.appendChild(b);
-                setTimeout(() => b.remove(), 8000);
-            }, 400);
-            setTimeout(() => clearInterval(interval), 6000);
-        }
 
+                setTimeout(() => b.remove(), 8000);
+
+            }, 400);
+        }
         // --- Gallery Special Effects ---
         function startGalleryEffects() {
             const container = document.getElementById('gallery-bg-elements');
