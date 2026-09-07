@@ -54,6 +54,7 @@
             left: 0;
             width: 100vw;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -806,30 +807,20 @@
                 ['#a29bfe', '#6c5ce7'], ['#ff9ff3', '#f368e0']
             ];
 
-            setInterval(() => {
+            const interval = setInterval(() => {
                 const b = document.createElement('div');
                 const shine = document.createElement('div');
-
                 b.classList.add('balloon');
                 shine.classList.add('balloon-shine');
-
-                const gradient =
-                    colorGradients[Math.floor(Math.random() * colorGradients.length)];
-
+                const gradient = colorGradients[Math.floor(Math.random() * colorGradients.length)];
                 b.style.left = Math.random() * 95 + 'vw';
-                b.style.background =
-                    `radial-gradient(circle at 70% 30%, ${gradient[0]}, ${gradient[1]})`;
-
-                b.style.boxShadow =
-                    `inset -10px -10px 20px rgba(0,0,0,0.3),
-                    0 10px 30px rgba(0,0,0,0.2)`;
-
+                b.style.background = `radial-gradient(circle at 70% 30%, ${gradient[0]}, ${gradient[1]})`;
+                b.style.boxShadow = `inset -10px -10px 20px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2)`;
                 b.appendChild(shine);
                 targetContainer.appendChild(b);
-
                 setTimeout(() => b.remove(), 8000);
-
             }, 400);
+            setTimeout(() => clearInterval(interval), 6000);
         }
         // --- Gallery Special Effects ---
         function startGalleryEffects() {
